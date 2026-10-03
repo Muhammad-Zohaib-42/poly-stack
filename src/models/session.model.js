@@ -17,6 +17,10 @@ const sessionSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
     required: [true, "User id is required"]
+  },
+  revoke: {
+    type: Boolean,
+    default: false
   }
 }, {timestamps: true})
 

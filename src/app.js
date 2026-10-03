@@ -1,9 +1,13 @@
 import express from "express"
-import ApiResponse from "./utils/ApiResponse.js"
+import {ApiResponse} from "./utils/ApiResponse.js"
+import cookieParser from "cookie-parser"
 
 const app = express()
 
-app.use((error, _, res, _) => {
+app.use(express.json())
+app.use(cookieParser())
+
+app.use((error, _, res, next) => {
   const status = error.statusCode || 500
   const message = error.message || "Internal server error"
 
@@ -11,5 +15,13 @@ app.use((error, _, res, _) => {
     new ApiResponse(status, message, false)
   )
 })
+
+// importing routes
+import authRoutes from "./routes/auth.routes.js"
+import articleRoutes from "./routes/article.routes.js"
+
+// declaring routes
+app.use("/api/v1/auth", authRoutes)
+app.use("/api/v1/article", articleRoutes)
 
 export {app}

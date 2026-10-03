@@ -14,6 +14,11 @@ const otpSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
     required: [true, "User id is required"]
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    expires: 15 * 60 * 1000
   }
 }, {timestamps: true})
 
