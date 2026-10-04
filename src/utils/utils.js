@@ -196,5 +196,5 @@ export function getEmailHtml(name, otp) {
 }
 
 export function getOtp() {
-  return Math.floor((Math.random() * 99999) + 100000)
+  return Math.floor((Math.random() * 99999) + 100000).toString()
 }
