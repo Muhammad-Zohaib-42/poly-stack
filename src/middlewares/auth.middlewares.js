@@ -4,7 +4,7 @@ import { ApiResponse } from "../utils/ApiResponse.js"
 import jwt from "jsonwebtoken"
 
 export async function verifyJwt(req, res, next) {
-  const accessToken = req.headers["authorization"].split(" ")[1]
+  const accessToken = req.headers["authorization"]?.split(" ")[1]
 
   if (!accessToken) {
     return res.status(401).json(
